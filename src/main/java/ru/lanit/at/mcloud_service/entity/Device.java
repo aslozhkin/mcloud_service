@@ -1,12 +1,14 @@
 package ru.lanit.at.mcloud_service.entity;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonSetter;
 
 @JsonInclude
 public class Device {
     private int id;
     private String deviceName;
-    private String latformName;
+    private String platformName;
     private String deviceUdid;
     private String screenResolution;
     private Double screenDiagonal;
@@ -16,9 +18,9 @@ public class Device {
     public Device() {
     }
 
-    public Device(String deviceName, String latformName, String deviceUdid, String screenResolution, Double screenDiagonal, Double platformVersion, int cameraMegapixels) {
+    public Device(String deviceName, String platformName, String deviceUdid, String screenResolution, Double screenDiagonal, Double platformVersion, int cameraMegapixels) {
         this.deviceName = deviceName;
-        this.latformName = latformName;
+        this.platformName = platformName;
         this.deviceUdid = deviceUdid;
         this.screenResolution = screenResolution;
         this.screenDiagonal = screenDiagonal;
@@ -38,22 +40,25 @@ public class Device {
         return deviceName;
     }
 
-    public void setDeviceName(String device_name) {
-        this.deviceName = device_name;
+    @JsonProperty("device_name")
+    public void setDeviceName(String deviceName) {
+        this.deviceName = deviceName;
     }
 
-    public String getLatformName() {
-        return latformName;
+    public String getPlatformName() {
+        return platformName;
     }
 
-    public void setLatformName(String latformName) {
-        this.latformName = latformName;
+    @JsonProperty("platform_name")
+    public void setPlatformName(String platformName) {
+        this.platformName = platformName;
     }
 
     public String getDeviceUdid() {
         return deviceUdid;
     }
 
+    @JsonProperty("device_udid")
     public void setDeviceUdid(String deviceUdid) {
         this.deviceUdid = deviceUdid;
     }
@@ -62,6 +67,7 @@ public class Device {
         return screenResolution;
     }
 
+    @JsonProperty("screen_resolution")
     public void setScreenResolution(String screenResolution) {
         this.screenResolution = screenResolution;
     }
@@ -70,6 +76,7 @@ public class Device {
         return screenDiagonal;
     }
 
+    @JsonProperty("screen_diagonal")
     public void setScreenDiagonal(Double screenDiagonal) {
         this.screenDiagonal = screenDiagonal;
     }
@@ -78,6 +85,7 @@ public class Device {
         return platformVersion;
     }
 
+    @JsonProperty("platform_version")
     public void setPlatformVersion(Double platformVersion) {
         this.platformVersion = platformVersion;
     }
@@ -86,6 +94,7 @@ public class Device {
         return cameraMegapixels;
     }
 
+    @JsonProperty("camera_megapixels")
     public void setCameraMegapixels(int cameraMegapixels) {
         this.cameraMegapixels = cameraMegapixels;
     }
