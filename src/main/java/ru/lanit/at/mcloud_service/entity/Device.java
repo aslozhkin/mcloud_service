@@ -115,15 +115,14 @@ public class Device {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Device device = (Device) o;
-        return Objects.equals(deviceName, device.deviceName) &&
-                Objects.equals(platformName, device.platformName) &&
-                Objects.equals(deviceUdid, device.deviceUdid) &&
-                Objects.equals(screenResolution, device.screenResolution) &&
-                Objects.equals(platformVersion, device.platformVersion);
+        return Objects.equals(platformName, device.platformName) &&
+               Objects.equals(deviceUdid, device.deviceUdid) &&
+               Objects.equals(screenResolution, device.screenResolution) &&
+               Objects.equals(platformVersion, device.platformVersion);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(deviceName, platformName, deviceUdid, screenResolution, platformVersion);
+        return Objects.hash(platformName, deviceUdid, screenResolution, platformVersion);
     }
 }

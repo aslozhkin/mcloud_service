@@ -3,6 +3,7 @@ package ru.lanit.at.mcloud_service.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +16,7 @@ import java.util.List;
 @Controller
 @RequestMapping("/devices")
 public class DeviceController {
-    private final static String SELENIUM_HUB_URL = "http://192.168.0.108:4444/";
+    private final static String SELENIUM_HUB_URL = "http://hub:4444/";
     private final static String LIST_PROXIES_SERVLET = "grid/admin/ListProxiesServlet";
     private final static String DP_URL = "http://postgrest-testing.apps.ocp-stage.gu.local/";
     private final static String MCLOUD_DEVICES_TABLE = "mcloud_devices";
@@ -30,6 +31,13 @@ public class DeviceController {
         ResponseEntity<List<Device>> availableDevicesResponse = restTemplate.exchange(SELENIUM_HUB_URL + LIST_PROXIES_SERVLET, HttpMethod.GET, null,
                 new ParameterizedTypeReference<List<Device>>() {});
 
-        return allDevicesResponse;
+        List<Device> allDevices = allDevicesResponse.getBody();
+        List<Device> availableDevices = availableDevicesResponse.getBody();
+
+        for (Device device : allDevices) {
+            if (availableDevices.contains(device)) device.setAvailable(true);
+        }
+
+        return new ResponseEntity<>(allDevices, HttpStatus.OK);
     }
 }
