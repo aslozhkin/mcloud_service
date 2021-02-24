@@ -4,6 +4,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonSetter;
 
+import java.util.Objects;
+
 @JsonInclude
 public class Device {
     private int id;
@@ -14,6 +16,7 @@ public class Device {
     private Double screenDiagonal;
     private Double platformVersion;
     private int cameraMegapixels;
+    private boolean isAvailable;
 
     public Device() {
     }
@@ -97,5 +100,30 @@ public class Device {
     @JsonProperty("camera_megapixels")
     public void setCameraMegapixels(int cameraMegapixels) {
         this.cameraMegapixels = cameraMegapixels;
+    }
+
+    public boolean isAvailable() {
+        return isAvailable;
+    }
+
+    public void setAvailable(boolean available) {
+        isAvailable = available;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Device device = (Device) o;
+        return Objects.equals(deviceName, device.deviceName) &&
+                Objects.equals(platformName, device.platformName) &&
+                Objects.equals(deviceUdid, device.deviceUdid) &&
+                Objects.equals(screenResolution, device.screenResolution) &&
+                Objects.equals(platformVersion, device.platformVersion);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(deviceName, platformName, deviceUdid, screenResolution, platformVersion);
     }
 }
