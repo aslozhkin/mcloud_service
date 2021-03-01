@@ -14,14 +14,14 @@ public class Device {
     private String deviceUdid;
     private String screenResolution;
     private Double screenDiagonal;
-    private Double platformVersion;
+    private String platformVersion;
     private int cameraMegapixels;
     private boolean isAvailable;
 
     public Device() {
     }
 
-    public Device(String deviceName, String platformName, String deviceUdid, String screenResolution, Double screenDiagonal, Double platformVersion, int cameraMegapixels) {
+    public Device(String deviceName, String platformName, String deviceUdid, String screenResolution, Double screenDiagonal, String platformVersion, int cameraMegapixels) {
         this.deviceName = deviceName;
         this.platformName = platformName;
         this.deviceUdid = deviceUdid;
@@ -84,12 +84,12 @@ public class Device {
         this.screenDiagonal = screenDiagonal;
     }
 
-    public Double getPlatformVersion() {
+    public String getPlatformVersion() {
         return platformVersion;
     }
 
     @JsonProperty("platform_version")
-    public void setPlatformVersion(Double platformVersion) {
+    public void setPlatformVersion(String platformVersion) {
         this.platformVersion = platformVersion;
     }
 
